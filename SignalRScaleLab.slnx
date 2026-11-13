@@ -1,0 +1,5 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ScaleLab.Core/ScaleLab.Core.csproj" />
+  </Folder>
+</Solution>

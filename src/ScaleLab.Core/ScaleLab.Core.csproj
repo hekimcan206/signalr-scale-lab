@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>Scenario catalogue, fan-out accounting, statistics and chart rendering for the SignalR scale-out lab. No I/O.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="ScaleLab.UnitTests" />
+  </ItemGroup>
+
+</Project>
