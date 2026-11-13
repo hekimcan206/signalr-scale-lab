@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <Description>YARP reverse proxy for the scale-out lab: a sticky (cookie affinity) route and a plain round-robin route to the same hub servers.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Yarp.ReverseProxy" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ScaleLab.Hosting\ScaleLab.Hosting.csproj" />
+  </ItemGroup>
+
+</Project>
