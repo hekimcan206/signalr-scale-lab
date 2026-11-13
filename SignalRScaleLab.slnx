@@ -3,6 +3,7 @@
     <Project Path="src/ScaleLab.Core/ScaleLab.Core.csproj" />
     <Project Path="src/ScaleLab.Hosting/ScaleLab.Hosting.csproj" />
     <Project Path="src/ScaleLab.HubServer/ScaleLab.HubServer.csproj" />
+    <Project Path="src/ScaleLab.LoadGen/ScaleLab.LoadGen.csproj" />
     <Project Path="src/ScaleLab.Proxy/ScaleLab.Proxy.csproj" />
   </Folder>
 </Solution>

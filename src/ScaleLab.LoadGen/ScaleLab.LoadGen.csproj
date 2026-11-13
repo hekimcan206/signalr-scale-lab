@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <Description>Load generator and report builder for the SignalR scale-out lab: opens thousands of client connections, measures broadcast fan-out and memory, renders charts.</Description>
+    <!-- Thousands of concurrent connections: server GC keeps allocation on the receive path from serialising. -->
+    <ServerGarbageCollection>true</ServerGarbageCollection>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ScaleLab.Core\ScaleLab.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="ScaleLab.IntegrationTests" />
+    <InternalsVisibleTo Include="ScaleLab.UnitTests" />
+  </ItemGroup>
+
+</Project>
