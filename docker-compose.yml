@@ -1,0 +1,96 @@
+# docker compose up: three SignalR hub servers, a Redis backplane, a YARP proxy with a sticky and a round-robin route,
+# and a load generator that runs every scenario once and checks that each topology behaves as expected.
+#
+# Benchmarks reuse the same stack (see bench/run-matrix.sh):
+#   docker compose run --rm loadgen bench --scenario sticky-redis --out /results/runs/sticky-redis-1.json
+
+name: signalr-scale-lab
+
+x-hub: &hub
+  build:
+    context: .
+    target: hub
+  image: signalr-scale-lab-hub:local
+  environment: &hub-env
+    Lab__Redis: redis:6379,abortConnect=false
+    Lab__Key: ${LAB_KEY:-lab-dev-only}
+  depends_on:
+    redis:
+      condition: service_healthy
+  # Fixed limits make runs comparable on a shared host; the benchmark report states them.
+  cpus: 2
+  mem_limit: 1g
+  ulimits:
+    nofile: { soft: 200000, hard: 200000 }
+  restart: "no"
+
+services:
+  redis:
+    image: redis:7.4.11-alpine
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    cpus: 1
+    mem_limit: 256m
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 2s
+      retries: 15
+
+  hub-1:
+    <<: *hub
+    hostname: hub-1
+    environment:
+      <<: *hub-env
+      Lab__Node: hub-1
+    # Only hub-1 is published, for poking at the API from the host; clients normally go through the proxy.
+    ports:
+      - "127.0.0.1:58481:8080"
+
+  hub-2:
+    <<: *hub
+    hostname: hub-2
+    environment:
+      <<: *hub-env
+      Lab__Node: hub-2
+
+  hub-3:
+    <<: *hub
+    hostname: hub-3
+    environment:
+      <<: *hub-env
+      Lab__Node: hub-3
+
+  proxy:
+    build:
+      context: .
+      target: proxy
+    image: signalr-scale-lab-proxy:local
+    environment:
+      Lab__Node: proxy
+      Lab__Key: ${LAB_KEY:-lab-dev-only}
+      Proxy__Destinations: http://hub-1:8080,http://hub-2:8080,http://hub-3:8080
+    depends_on: [hub-1, hub-2, hub-3]
+    cpus: 2
+    mem_limit: 1g
+    ulimits:
+      nofile: { soft: 200000, hard: 200000 }
+    ports:
+      - "127.0.0.1:58480:8080"
+
+  loadgen:
+    build:
+      context: .
+      target: loadgen
+    image: signalr-scale-lab-loadgen:local
+    environment:
+      LAB_KEY: ${LAB_KEY:-lab-dev-only}
+      LAB_HOST: ${LAB_HOST:-unspecified}
+    command: ["demo", "--connections", "300"]
+    depends_on: [proxy]
+    # Overridable for the client-side experiment in docs/benchmarks.md (LOADGEN_CPUS=8).
+    cpus: ${LOADGEN_CPUS:-4}
+    mem_limit: 3g
+    ulimits:
+      nofile: { soft: 200000, hard: 200000 }
+    volumes:
+      - ./benchmark-results:/results
