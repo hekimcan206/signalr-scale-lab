@@ -6,4 +6,7 @@
     <Project Path="src/ScaleLab.LoadGen/ScaleLab.LoadGen.csproj" />
     <Project Path="src/ScaleLab.Proxy/ScaleLab.Proxy.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ScaleLab.UnitTests/ScaleLab.UnitTests.csproj" />
+  </Folder>
 </Solution>
