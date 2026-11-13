@@ -1,5 +1,7 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/ScaleLab.Core/ScaleLab.Core.csproj" />
+    <Project Path="src/ScaleLab.Hosting/ScaleLab.Hosting.csproj" />
+    <Project Path="src/ScaleLab.HubServer/ScaleLab.HubServer.csproj" />
   </Folder>
 </Solution>

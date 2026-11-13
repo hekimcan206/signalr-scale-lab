@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <Description>SignalR hub server for the scale-out lab: a Redis-backed fan-out hub and an in-memory hub side by side.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.StackExchangeRedis" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ScaleLab.Hosting\ScaleLab.Hosting.csproj" />
+  </ItemGroup>
+
+</Project>
