@@ -1,0 +1,13 @@
+Redis pub/sub channels with the backplane (sticky-redis, 2,000 connections, measured with redis-cli on 2026-11-13)
+
+idle stack (3 hub servers, 0 connections):  9 channels   (shared and per-server internal channels, e.g. internal:ack and internal:return per server)
+2,000 connections open (sampled 3 times):   2,009 channels
+after the clients disconnected:             9 channels
+redis used_memory after the run:            1.32M
+
+Sample channel names:
+  scalelabScaleLab.HubServer.FanoutHub:connection:cAVwPupTaUV_r7OqY81cNw
+  scalelabScaleLab.HubServer.FanoutHub:internal:ack:hub-2_efa03e55669742788dee343ad4b3a5e9
+
+Reading: RedisHubLifetimeManager subscribes one channel per connection (for Clients.Client(id) sends from any
+server), so Redis subscriptions, and each hub server's subscription bookkeeping, grow linearly with connections.

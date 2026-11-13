@@ -1,0 +1,1 @@
+Docker Desktop VM (16 CPU, 7.6 GB) on a shared Windows host; hubs 2 CPU each.

@@ -1,0 +1,15 @@
+2026-11-13T19:38:22Z single rep 1: running containers on host 11, VM loadavg 1.43 1.12 0.80 3/787 33
+2026-11-13T19:39:37Z sticky-only rep 1: running containers on host 12, VM loadavg 2.90 1.55 0.97 10/819 34
+2026-11-13T19:41:24Z sticky-redis rep 1: running containers on host 12, VM loadavg 5.46 2.65 1.41 11/820 33
+2026-11-13T19:42:42Z rr-negotiate rep 1: running containers on host 12, VM loadavg 2.78 2.64 1.52 2/808 39
+2026-11-13T19:43:51Z rr-skip rep 1: running containers on host 12, VM loadavg 3.16 2.77 1.64 2/806 33
+2026-11-13T19:45:08Z single rep 2: running containers on host 12, VM loadavg 2.89 2.81 1.75 3/805 45
+2026-11-13T19:46:20Z sticky-only rep 2: running containers on host 12, VM loadavg 1.60 2.44 1.70 2/810 33
+2026-11-13T19:47:57Z sticky-redis rep 2: running containers on host 12, VM loadavg 0.48 1.81 1.54 4/809 33
+2026-11-13T19:49:14Z rr-negotiate rep 2: running containers on host 12, VM loadavg 1.82 1.93 1.60 2/805 39
+2026-11-13T19:50:29Z rr-skip rep 2: running containers on host 12, VM loadavg 0.67 1.56 1.50 6/823 45
+2026-11-13T19:51:49Z single rep 3: running containers on host 12, VM loadavg 3.34 2.10 1.69 6/820 45
+2026-11-13T19:53:03Z sticky-only rep 3: running containers on host 12, VM loadavg 2.00 2.01 1.69 2/818 33
+2026-11-13T19:54:43Z sticky-redis rep 3: running containers on host 12, VM loadavg 2.00 2.05 1.74 3/811 34
+2026-11-13T19:56:05Z rr-negotiate rep 3: running containers on host 12, VM loadavg 5.23 2.81 2.02 5/815 44
+2026-11-13T19:57:23Z rr-skip rep 3: running containers on host 12, VM loadavg 3.04 2.70 2.05 3/809 47

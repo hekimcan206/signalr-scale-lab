@@ -1,0 +1,544 @@
+{
+  "scenario": "rr-negotiate",
+  "repetition": 2,
+  "startedAt": "2026-11-13T19:49:17.8523666+00:00",
+  "settings": {
+    "servers": 3,
+    "messagesPerStage": 20,
+    "messagesPerSecond": 2,
+    "payloadBytes": 32,
+    "connectConcurrency": 100,
+    "host": "Windows 11, i7-13620H, Docker Desktop VM 16 CPU / 7.6 GB, shared"
+  },
+  "baseline": {
+    "serverWorkingSetBytes": 312852480,
+    "serverHeapBytes": 7363536,
+    "proxyWorkingSetBytes": 102920192,
+    "proxyHeapBytes": 2075848,
+    "clientWorkingSetBytes": 78135296,
+    "clientHeapBytes": 568648,
+    "processes": [
+      {
+        "node": "hub-1",
+        "role": "hub",
+        "connections": {
+          "fanout": 0,
+          "local": 0
+        },
+        "workingSetBytes": 104960000,
+        "gcHeapBytes": 2493024,
+        "gcCommittedBytes": 6889472,
+        "threadCount": 29,
+        "cpuSeconds": 1.86527,
+        "backplane": true,
+        "totalConnections": 0
+      },
+      {
+        "node": "hub-2",
+        "role": "hub",
+        "connections": {
+          "fanout": 0,
+          "local": 0
+        },
+        "workingSetBytes": 104038400,
+        "gcHeapBytes": 2451488,
+        "gcCommittedBytes": 6889472,
+        "threadCount": 29,
+        "cpuSeconds": 1.642962,
+        "backplane": true,
+        "totalConnections": 0
+      },
+      {
+        "node": "hub-3",
+        "role": "hub",
+        "connections": {
+          "fanout": 0,
+          "local": 0
+        },
+        "workingSetBytes": 103854080,
+        "gcHeapBytes": 2419024,
+        "gcCommittedBytes": 6692864,
+        "threadCount": 29,
+        "cpuSeconds": 1.508353,
+        "backplane": true,
+        "totalConnections": 0
+      },
+      {
+        "node": "proxy",
+        "role": "proxy",
+        "connections": {
+          "websockets": 0
+        },
+        "workingSetBytes": 102920192,
+        "gcHeapBytes": 2075848,
+        "gcCommittedBytes": 6692864,
+        "threadCount": 18,
+        "cpuSeconds": 1.313798,
+        "backplane": false,
+        "totalConnections": 0
+      }
+    ]
+  },
+  "stages": [
+    {
+      "target": 1000,
+      "connected": 333,
+      "failed": 667,
+      "dropped": 0,
+      "failureReasons": {
+        "TransportFailedException: WebSockets failed: The server returned status code \u0027404\u0027 when status code \u0027101\u0027 was expected.": 667
+      },
+      "rampSeconds": 1.056,
+      "connectionsPerServer": {
+        "hub-1": 107,
+        "hub-2": 110,
+        "hub-3": 116
+      },
+      "memory": {
+        "serverWorkingSetBytes": 368771072,
+        "serverHeapBytes": 18784224,
+        "proxyWorkingSetBytes": 138207232,
+        "proxyHeapBytes": 12419856,
+        "clientWorkingSetBytes": 147263488,
+        "clientHeapBytes": 17151032,
+        "processes": [
+          {
+            "node": "hub-1",
+            "role": "hub",
+            "connections": {
+              "fanout": 107,
+              "local": 0
+            },
+            "workingSetBytes": 122482688,
+            "gcHeapBytes": 6164200,
+            "gcCommittedBytes": 14942208,
+            "threadCount": 33,
+            "cpuSeconds": 3.916489,
+            "backplane": true,
+            "totalConnections": 107
+          },
+          {
+            "node": "hub-2",
+            "role": "hub",
+            "connections": {
+              "fanout": 110,
+              "local": 0
+            },
+            "workingSetBytes": 122728448,
+            "gcHeapBytes": 6232272,
+            "gcCommittedBytes": 15269888,
+            "threadCount": 33,
+            "cpuSeconds": 3.853285,
+            "backplane": true,
+            "totalConnections": 110
+          },
+          {
+            "node": "hub-3",
+            "role": "hub",
+            "connections": {
+              "fanout": 116,
+              "local": 0
+            },
+            "workingSetBytes": 123559936,
+            "gcHeapBytes": 6387752,
+            "gcCommittedBytes": 15663104,
+            "threadCount": 33,
+            "cpuSeconds": 3.518471,
+            "backplane": true,
+            "totalConnections": 116
+          },
+          {
+            "node": "proxy",
+            "role": "proxy",
+            "connections": {
+              "websockets": 333
+            },
+            "workingSetBytes": 138207232,
+            "gcHeapBytes": 12419856,
+            "gcCommittedBytes": 31703040,
+            "threadCount": 25,
+            "cpuSeconds": 4.522175,
+            "backplane": false,
+            "totalConnections": 333
+          }
+        ]
+      },
+      "fanout": {
+        "messagesSent": 20,
+        "messagesComplete": 20,
+        "expectedReceives": 6660,
+        "receives": 6660,
+        "deliveryRatio": 1,
+        "latencyMs": {
+          "count": 6660,
+          "p50": 4.724657,
+          "p95": 9.011118999999999,
+          "p99": 10.770807,
+          "max": 12.354757999999999,
+          "mean": 5.130191152852856
+        },
+        "completionMs": {
+          "count": 20,
+          "p50": 6.660146,
+          "p95": 11.197958999999999,
+          "p99": 12.354757999999999,
+          "max": 12.354757999999999,
+          "mean": 7.242546299999999
+        },
+        "strays": 0
+      },
+      "cpuCoresDuringFanout": {
+        "hub-1": 0.049,
+        "hub-2": 0.028,
+        "hub-3": 0.032,
+        "proxy": 0.063,
+        "loadgen": 0.105
+      }
+    },
+    {
+      "target": 2500,
+      "connected": 808,
+      "failed": 1692,
+      "dropped": 0,
+      "failureReasons": {
+        "TransportFailedException: WebSockets failed: The server returned status code \u0027404\u0027 when status code \u0027101\u0027 was expected.": 1692
+      },
+      "rampSeconds": 1.015,
+      "connectionsPerServer": {
+        "hub-1": 262,
+        "hub-2": 261,
+        "hub-3": 285
+      },
+      "memory": {
+        "serverWorkingSetBytes": 410554368,
+        "serverHeapBytes": 33619392,
+        "proxyWorkingSetBytes": 173760512,
+        "proxyHeapBytes": 25841664,
+        "clientWorkingSetBytes": 210530304,
+        "clientHeapBytes": 40778776,
+        "processes": [
+          {
+            "node": "hub-1",
+            "role": "hub",
+            "connections": {
+              "fanout": 262,
+              "local": 0
+            },
+            "workingSetBytes": 135786496,
+            "gcHeapBytes": 11036304,
+            "gcCommittedBytes": 24559616,
+            "threadCount": 34,
+            "cpuSeconds": 6.387963,
+            "backplane": true,
+            "totalConnections": 262
+          },
+          {
+            "node": "hub-2",
+            "role": "hub",
+            "connections": {
+              "fanout": 261,
+              "local": 0
+            },
+            "workingSetBytes": 137003008,
+            "gcHeapBytes": 10998088,
+            "gcCommittedBytes": 25149440,
+            "threadCount": 34,
+            "cpuSeconds": 6.078949,
+            "backplane": true,
+            "totalConnections": 261
+          },
+          {
+            "node": "hub-3",
+            "role": "hub",
+            "connections": {
+              "fanout": 285,
+              "local": 0
+            },
+            "workingSetBytes": 137764864,
+            "gcHeapBytes": 11585000,
+            "gcCommittedBytes": 26132480,
+            "threadCount": 34,
+            "cpuSeconds": 5.995816,
+            "backplane": true,
+            "totalConnections": 285
+          },
+          {
+            "node": "proxy",
+            "role": "proxy",
+            "connections": {
+              "websockets": 808
+            },
+            "workingSetBytes": 173760512,
+            "gcHeapBytes": 25841664,
+            "gcCommittedBytes": 61140992,
+            "threadCount": 25,
+            "cpuSeconds": 8.396301,
+            "backplane": false,
+            "totalConnections": 808
+          }
+        ]
+      },
+      "fanout": {
+        "messagesSent": 20,
+        "messagesComplete": 20,
+        "expectedReceives": 16160,
+        "receives": 16160,
+        "deliveryRatio": 1,
+        "latencyMs": {
+          "count": 16160,
+          "p50": 7.462286,
+          "p95": 14.315555,
+          "p99": 18.715194,
+          "max": 22.607457,
+          "mean": 8.130540508725241
+        },
+        "completionMs": {
+          "count": 20,
+          "p50": 12.156521999999999,
+          "p95": 17.471009,
+          "p99": 22.607457,
+          "max": 22.607457,
+          "mean": 13.33749995
+        },
+        "strays": 0
+      },
+      "cpuCoresDuringFanout": {
+        "hub-1": 0.037,
+        "hub-2": 0.025,
+        "hub-3": 0.027,
+        "proxy": 0.07,
+        "loadgen": 0.162
+      }
+    },
+    {
+      "target": 5000,
+      "connected": 1629,
+      "failed": 3371,
+      "dropped": 0,
+      "failureReasons": {
+        "TransportFailedException: WebSockets failed: The server returned status code \u0027404\u0027 when status code \u0027101\u0027 was expected.": 3371
+      },
+      "rampSeconds": 1.374,
+      "connectionsPerServer": {
+        "hub-1": 520,
+        "hub-2": 538,
+        "hub-3": 571
+      },
+      "memory": {
+        "serverWorkingSetBytes": 471150592,
+        "serverHeapBytes": 59401504,
+        "proxyWorkingSetBytes": 213917696,
+        "proxyHeapBytes": 49014504,
+        "clientWorkingSetBytes": 280788992,
+        "clientHeapBytes": 79816280,
+        "processes": [
+          {
+            "node": "hub-1",
+            "role": "hub",
+            "connections": {
+              "fanout": 520,
+              "local": 0
+            },
+            "workingSetBytes": 155713536,
+            "gcHeapBytes": 19322232,
+            "gcCommittedBytes": 43872256,
+            "threadCount": 33,
+            "cpuSeconds": 7.841989,
+            "backplane": true,
+            "totalConnections": 520
+          },
+          {
+            "node": "hub-2",
+            "role": "hub",
+            "connections": {
+              "fanout": 538,
+              "local": 0
+            },
+            "workingSetBytes": 157487104,
+            "gcHeapBytes": 19574000,
+            "gcCommittedBytes": 45412352,
+            "threadCount": 34,
+            "cpuSeconds": 7.444508,
+            "backplane": true,
+            "totalConnections": 538
+          },
+          {
+            "node": "hub-3",
+            "role": "hub",
+            "connections": {
+              "fanout": 571,
+              "local": 0
+            },
+            "workingSetBytes": 157949952,
+            "gcHeapBytes": 20505272,
+            "gcCommittedBytes": 46006272,
+            "threadCount": 34,
+            "cpuSeconds": 7.543972,
+            "backplane": true,
+            "totalConnections": 571
+          },
+          {
+            "node": "proxy",
+            "role": "proxy",
+            "connections": {
+              "websockets": 1629
+            },
+            "workingSetBytes": 213917696,
+            "gcHeapBytes": 49014504,
+            "gcCommittedBytes": 100507648,
+            "threadCount": 27,
+            "cpuSeconds": 11.954833,
+            "backplane": false,
+            "totalConnections": 1629
+          }
+        ]
+      },
+      "fanout": {
+        "messagesSent": 20,
+        "messagesComplete": 20,
+        "expectedReceives": 32580,
+        "receives": 32580,
+        "deliveryRatio": 1,
+        "latencyMs": {
+          "count": 32580,
+          "p50": 17.092219999999998,
+          "p95": 30.79481,
+          "p99": 36.868538,
+          "max": 39.964058,
+          "mean": 17.217624982166967
+        },
+        "completionMs": {
+          "count": 20,
+          "p50": 28.162772999999998,
+          "p95": 39.246719,
+          "p99": 39.964058,
+          "max": 39.964058,
+          "mean": 29.253452050000003
+        },
+        "strays": 0
+      },
+      "cpuCoresDuringFanout": {
+        "hub-1": 0.059,
+        "hub-2": 0.049,
+        "hub-3": 0.057,
+        "proxy": 0.13,
+        "loadgen": 0.29
+      }
+    },
+    {
+      "target": 10000,
+      "connected": 3270,
+      "failed": 6730,
+      "dropped": 0,
+      "failureReasons": {
+        "TransportFailedException: WebSockets failed: The server returned status code \u0027404\u0027 when status code \u0027101\u0027 was expected.": 6730
+      },
+      "rampSeconds": 2.71,
+      "connectionsPerServer": {
+        "hub-1": 1071,
+        "hub-2": 1083,
+        "hub-3": 1116
+      },
+      "memory": {
+        "serverWorkingSetBytes": 582557696,
+        "serverHeapBytes": 110607888,
+        "proxyWorkingSetBytes": 280322048,
+        "proxyHeapBytes": 95106240,
+        "clientWorkingSetBytes": 398577664,
+        "clientHeapBytes": 159289200,
+        "processes": [
+          {
+            "node": "hub-1",
+            "role": "hub",
+            "connections": {
+              "fanout": 1071,
+              "local": 0
+            },
+            "workingSetBytes": 198180864,
+            "gcHeapBytes": 36251728,
+            "gcCommittedBytes": 82616320,
+            "threadCount": 32,
+            "cpuSeconds": 10.75271,
+            "backplane": true,
+            "totalConnections": 1071
+          },
+          {
+            "node": "hub-2",
+            "role": "hub",
+            "connections": {
+              "fanout": 1083,
+              "local": 0
+            },
+            "workingSetBytes": 189497344,
+            "gcHeapBytes": 36713888,
+            "gcCommittedBytes": 77099008,
+            "threadCount": 34,
+            "cpuSeconds": 10.143137,
+            "backplane": true,
+            "totalConnections": 1083
+          },
+          {
+            "node": "hub-3",
+            "role": "hub",
+            "connections": {
+              "fanout": 1116,
+              "local": 0
+            },
+            "workingSetBytes": 194879488,
+            "gcHeapBytes": 37642272,
+            "gcCommittedBytes": 82767872,
+            "threadCount": 32,
+            "cpuSeconds": 10.139419,
+            "backplane": true,
+            "totalConnections": 1116
+          },
+          {
+            "node": "proxy",
+            "role": "proxy",
+            "connections": {
+              "websockets": 3270
+            },
+            "workingSetBytes": 280322048,
+            "gcHeapBytes": 95106240,
+            "gcCommittedBytes": 166449152,
+            "threadCount": 27,
+            "cpuSeconds": 18.783765,
+            "backplane": false,
+            "totalConnections": 3270
+          }
+        ]
+      },
+      "fanout": {
+        "messagesSent": 20,
+        "messagesComplete": 20,
+        "expectedReceives": 65400,
+        "receives": 65400,
+        "deliveryRatio": 1,
+        "latencyMs": {
+          "count": 65400,
+          "p50": 28.886038,
+          "p95": 61.611317,
+          "p99": 73.821376,
+          "max": 83.644246,
+          "mean": 30.59406488162093
+        },
+        "completionMs": {
+          "count": 20,
+          "p50": 50.838497999999994,
+          "p95": 79.072688,
+          "p99": 83.644246,
+          "max": 83.644246,
+          "mean": 56.27875819999999
+        },
+        "strays": 0
+      },
+      "cpuCoresDuringFanout": {
+        "hub-1": 0.087,
+        "hub-2": 0.08,
+        "hub-3": 0.09,
+        "proxy": 0.261,
+        "loadgen": 0.53
+      }
+    }
+  ]
+}
