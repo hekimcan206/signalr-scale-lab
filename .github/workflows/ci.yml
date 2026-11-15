@@ -127,14 +127,14 @@ jobs:
     name: docker compose demo
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    # Hosted runners for private repositories have 2 CPUs; the load generator defaults to 4.
+    env:
+      LOADGEN_CPUS: "2"
     steps:
       - uses: actions/checkout@v7
 
       # The README promises `docker compose up` runs the whole demo with zero manual steps; this job keeps it true.
       - name: Start the stack
-        # Hosted runners for private repositories have 2 CPUs; the load generator defaults to 4.
-        env:
-          LOADGEN_CPUS: "2"
         run: docker compose up -d --build
 
       - name: Every topology behaves as expected
